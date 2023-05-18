@@ -1,23 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import NProgress from '@/utils/progress'
+import remainingRouter from './modules/remaining'
+import { setDocumentTitle } from './utils'
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+const modules = import.meta.glob(['./modules/**/*.js', '!./modules/**/remaining.js'], {
+  eager: true
+})
+
+const routes = []
+
+Object.keys(modules).forEach((key) => {
+  routes.push(modules[key].default)
+})
+
+export const router = createRouter({
+  history: createWebHashHistory(),
+  routes: routes.concat(remainingRouter)
+})
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  setDocumentTitle(to)
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router

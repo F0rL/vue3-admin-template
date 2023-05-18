@@ -1,8 +1,4 @@
 <template>
-  <div class="flex-c">
-    <div>123</div>
-    <div>456</div>
-  </div>
   <el-config-provider :size="size" :z-index="zIndex">
     <i-ep-add-location />
     <router-view />

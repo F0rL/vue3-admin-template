@@ -10,6 +10,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import svgLoader from 'vite-svg-loader'
 
 /** 路径查找 */
 const pathResolve = (dir) => {
@@ -58,7 +59,8 @@ export default defineConfig(({ command, mode }) => {
       }),
       Icons({
         autoInstall: true
-      })
+      }),
+      svgLoader()
     ],
     resolve: {
       alias: {

@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
+import { MotionPlugin } from '@vueuse/motion'
 
 // 引入重置样式
 import './styles/reset.scss'
@@ -14,5 +15,6 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(MotionPlugin)
 
 app.mount('#app')
