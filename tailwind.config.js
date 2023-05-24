@@ -5,5 +5,8 @@ module.exports = {
     extend: {}
   },
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  plugins: []
+  plugins: [],
+  corePlugins: {
+    container: false
+  }
 }

@@ -1,5 +1,3 @@
-import HomeView from '@/views/HomeView.vue'
-
 export default [
   {
     path: '/login',
@@ -12,9 +10,9 @@ export default [
   },
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
-    meta: { title: '首页' }
+    redirect: (to) => {
+      return { path: '/login' }
+    }
   },
   { path: '/:pathMatch(.*)*', name: 'pathMatch', redirect: '/error/404' }
 ]

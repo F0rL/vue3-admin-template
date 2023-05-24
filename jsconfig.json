@@ -2,8 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["src/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@api/*": ["src/api/*"]
+    },
+    "allowJs": true
   },
   "exclude": ["node_modules", "dist"]
 }

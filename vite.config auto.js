@@ -8,7 +8,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import svgLoader from 'vite-svg-loader'
 
 /** 路径查找 */
@@ -40,7 +40,7 @@ export default defineConfig(({ command, mode }) => {
       vueJsx(),
       AutoImport({
         resolvers: [
-          // ElementPlusResolver(),
+          ElementPlusResolver(),
           // 自动导入图标组件
           IconsResolver({
             prefix: 'Icon'
@@ -52,8 +52,8 @@ export default defineConfig(({ command, mode }) => {
           // 自动注册图标组件
           IconsResolver({
             enabledCollections: ['ep', 'material']
-          })
-          // ElementPlusResolver()
+          }),
+          ElementPlusResolver()
         ]
       }),
       Icons({
