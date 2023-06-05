@@ -12,7 +12,7 @@ import Components from 'unplugin-vue-components/vite'
 import svgLoader from 'vite-svg-loader'
 
 /** 路径查找 */
-const pathResolve = (dir) => {
+const pathResolve = dir => {
   return resolve(__dirname, '.', dir)
 }
 

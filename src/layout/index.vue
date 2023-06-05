@@ -6,7 +6,7 @@ import { ref } from 'vue'
   <div class="app-wrapper">
     <span>sideBar</span>
     <router-view #default="{ Component }">
-      <transition>
+      <transition :name="route?.meta.transition || 'fade'">
         <component :is="Component" />
       </transition>
     </router-view>

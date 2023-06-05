@@ -1,5 +1,5 @@
 import { ElMessage } from 'element-plus'
-import { isFunction } from './index'
+import { isFunction } from './validate'
 
 /**
  * `Message` 消息提示函数

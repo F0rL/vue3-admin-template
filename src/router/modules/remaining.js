@@ -1,3 +1,5 @@
+const Layout = () => import('@/layout/index.vue')
+
 export default [
   {
     path: '/login',
@@ -10,9 +12,18 @@ export default [
   },
   {
     path: '/',
-    redirect: (to) => {
-      return { path: '/login' }
-    }
-  },
-  { path: '/:pathMatch(.*)*', name: 'pathMatch', redirect: '/error/404' }
+    name: 'Home',
+    component: Layout,
+    redirect: to => {
+      return { path: '/welcome' }
+    },
+    children: [
+      {
+        path: '/welcome',
+        name: 'Welcome',
+        component: () => import('@/views/welcome/index.vue'),
+        meta: {}
+      }
+    ]
+  }
 ]

@@ -1,8 +1,14 @@
 <script setup>
-import { ref, reactive, onMounted, onBeforeUnmount, getCurrentInstance } from 'vue'
+import { ref, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
 import { getLoginVerCode, getToken } from '@api/auth'
 import { message } from '@/utils/message'
+import { useUserStore } from '@/store/modules/user'
 import md5 from 'md5'
+
+defineOptions({
+  name: 'Login'
+})
+
 const model = reactive({
   userName: 'SysAdmin0808',
   passWord: '123456',
@@ -21,6 +27,7 @@ const onSetVerifyImage = () => {
   })
 }
 
+const userStore = useUserStore()
 const onSubmit = async formEl => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
@@ -33,7 +40,8 @@ const onSubmit = async formEl => {
           verifyCode: md5(model.verifyCode.toUpperCase()).toUpperCase()
         }
       })
-        .then(() => {
+        .then(res => {
+          userStore.setToken(res.msg)
           message('登录成功', {
             type: 'success'
           })

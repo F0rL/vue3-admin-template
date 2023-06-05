@@ -18,7 +18,7 @@ module.exports = {
     quotes: [0, 'double'],
     'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
     camelcase: 0,
-    'space-before-function-paren': false
+    'space-before-function-paren': 0
   },
   parserOptions: {
     parser: 'babel-eslint'

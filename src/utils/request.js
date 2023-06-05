@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { message } from '@/utils/message'
+import { useUserStore } from '@/store/modules/user'
 import { parse, stringify } from 'qs'
 import config from '@/config'
 import routers from '@/router/index'
@@ -27,11 +28,6 @@ function clearEmptyParam(config) {
     }
   })
   return newConfig
-}
-
-//
-function getToken() {
-  return '1111'
 }
 
 let loadingInstance
@@ -67,7 +63,7 @@ const request = axios.create({
 
 request.interceptors.request.use(
   config => {
-    config.headers.Authorization = 'Bearer ' + getToken()
+    config.headers.Authorization = 'Bearer ' + useUserStore().token
     config = clearEmptyParam(config)
     return config
   },
@@ -78,7 +74,6 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   res => {
-    console.log(res)
     if (res.data.flag) {
       return Promise.resolve(res.data)
     } else {
